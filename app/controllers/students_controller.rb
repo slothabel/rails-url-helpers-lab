@@ -10,9 +10,10 @@ class StudentsController < ApplicationController
 
   def activate
     @student = Student.find(params[:id])
-    if @student.active == false
-      @student.active = true
-    end
+    @student.active = !@student.active 
+    # ! does the opposite, so its setting it to true 
+    @student.save
+    redirect_to student_path(@student)
   end
 
   private
